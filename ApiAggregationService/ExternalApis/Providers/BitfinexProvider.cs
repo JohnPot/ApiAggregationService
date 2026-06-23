@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace ApiAggregationService.ExternalApis.Providers;
+﻿namespace ApiAggregationService.ExternalApis.Providers;
 
 public class BitfinexProvider : IApiProvider
 {

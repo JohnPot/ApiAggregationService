@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ApiAggregationService.Services.Statistics;
+﻿namespace ApiAggregationService.Services.Statistics;
 
 public class ApiStatistics
 {
