@@ -1,0 +1,14 @@
+services:
+  apiaggregationservice:
+    build:
+      context: .
+      dockerfile: ApiAggregationService/Dockerfile
+
+    container_name: apiaggregationservice
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+
+    ports:
+      - "8080:80"
