@@ -1,5 +1,5 @@
-﻿using ApiAggregationService.Cache;
-using ApiAggregationService.CommonMethods;
+﻿using ApiAggregationService.CommonMethods;
+using ApiAggregationService.Infrastructure.Cache;
 
 namespace ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
 public static class AggregatedDataMapper

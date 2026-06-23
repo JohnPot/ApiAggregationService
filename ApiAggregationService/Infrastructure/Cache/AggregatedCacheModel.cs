@@ -1,4 +1,4 @@
-﻿namespace ApiAggregationService.Cache;
+﻿namespace ApiAggregationService.Infrastructure.Cache;
 
 public record AggregatedCacheModel
 {

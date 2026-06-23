@@ -1,4 +1,5 @@
 using ApiAggregationService.CommonMethods;
+using ApiAggregationService.Infrastructure.Resilience;
 using ApiAggregationService.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -89,6 +90,8 @@ builder.Services.AddDependencyServices();
 builder.Services.AddDependencyProviders();
 builder.Services.AddDependencyHttpClients();
 builder.Services.AddDependencyHostedServices();
+
+builder.Services.AddSingleton<RetryPolicyFactory>();
 
 builder.WebHost.UseUrls("http://0.0.0.0:80");
 

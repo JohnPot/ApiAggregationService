@@ -1,5 +1,4 @@
-﻿using ApiAggregationService.Cache;
-using ApiAggregationService.ExternalApis.Providers;
+﻿using ApiAggregationService.ExternalApis.Providers;
 using ApiAggregationService.ExternalApis.Providers.Bitstamp;
 using ApiAggregationService.ExternalApis.Providers.Github;
 using ApiAggregationService.ExternalApis.Providers.OpenWeatherMapProvider;
