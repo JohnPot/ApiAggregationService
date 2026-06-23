@@ -5,7 +5,6 @@ using ApiAggregationService.Services.Statistics;
 using ApiAggregationService.Services.ValueTransformation;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using Polly.Retry;
 
 namespace Tests;
 
@@ -19,8 +18,8 @@ public class ServiceFactory
     public ServiceFactory()
     {
         _cache = new MemoryCache(new MemoryCacheOptions());
-        _statisticsService = new FakeStatisticsService();
-        _valueTransformation = new FakeValueTransformation();
+        _statisticsService = new StatisticsService();
+        _valueTransformation = new ValueTransformationService();
 
         var loggerFactory = LoggerFactory.Create(builder =>
         {

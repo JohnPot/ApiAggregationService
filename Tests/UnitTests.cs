@@ -11,7 +11,6 @@ public class UnitTests
     [Fact]
     public async Task GetAggregatedData_Should_Return_Aggregated_Value()
     {
-        // Arrange
         var providers = new List<IApiProvider>
         {
             new FakeProvider("Api1", 100),
@@ -21,15 +20,9 @@ public class UnitTests
 
         var service = new ServiceFactory().CreateAggregationService(providers);
 
+        var result = await service.GetAggregatedData(new AggregatedDataFilter(), CancellationToken.None);
 
-        // Act
-        var result = await service.GetAggregatedData(
-            new AggregatedDataFilter(),
-            CancellationToken.None);
-
-
-        // Assert
-        Assert.Equal(600, result.Value.AggregatedValue);
+        Assert.Equal(200, result.Value.AggregatedValue);
     }
 
     [Fact]
@@ -37,19 +30,16 @@ public class UnitTests
     {
         var providers = new List<IApiProvider>
         {
-            new FakeProvider("Good", 100),
+            new FakeProvider("Good", 150),
             new FailingProvider("Bad")
         };
 
-
         AggregationService service = new ServiceFactory().CreateAggregationService(providers);
 
-        var result = await service.GetAggregatedData(
-            new AggregatedDataFilter(),
-            CancellationToken.None);
+        var result = await service.GetAggregatedData(new AggregatedDataFilter(), CancellationToken.None);
 
 
-        Assert.Equal(100, result.Value.AggregatedValue);
+        Assert.Equal(150, result.Value.AggregatedValue);
         Assert.Equal(1, result.Value.SourcesUsed);
     }
 
@@ -82,12 +72,22 @@ public class UnitTests
         {
             new()
             {
-                Provider = "A",
+                Provider = "Bitfinex",
                 Value = 100
             },
             new()
             {
-                Provider = "B",
+                Provider = "Bitstamp",
+                Value = 200
+            },
+            new()
+            {
+                Provider = "Github",
+                Value = 350
+            },
+            new()
+            {
+                Provider = "Poke",
                 Value = 500
             }
         };
@@ -101,7 +101,7 @@ public class UnitTests
             });
 
 
-        Assert.Equal("B", result.First().Provider);
+        Assert.Equal("Poke", result.First().Provider);
     }
 
     [Fact]
@@ -116,6 +116,16 @@ public class UnitTests
             },
             new()
             {
+                Provider = "Bitfinex",
+                Value=100
+            },
+            new()
+            {
+                Provider = "Poke",
+                Value=100
+            },
+            new()
+            {
                 Provider = "Bitstamp",
                 Value=200
             }
@@ -126,11 +136,11 @@ public class UnitTests
             new AggregatedDataFilter
             {
                 SortBy = AggregatedDataSortBy.Provider,
-                Direction = SortDirection.Desc
+                Direction = SortDirection.Asc
             });
 
 
-        Assert.Equal("Github", result[0].Provider);
+        Assert.Equal("Bitfinex", result[0].Provider);
     }
 
     [Fact]
@@ -140,9 +150,7 @@ public class UnitTests
 
         statisticsService.Record("Github", 50, true);
 
-
         var stats = statisticsService.GetStatistics().First();
-
 
         Assert.Equal(1, stats.FastRequests);
         Assert.Equal(1, stats.TotalRequests);
