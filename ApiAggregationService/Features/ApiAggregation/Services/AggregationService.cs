@@ -96,7 +96,7 @@ public class AggregationService : IAggregationService
         return Result<GetAggregatedDataResponse>.Success(AggregatedData);
     }
 
-    public async Task<Result<List<GetRequestsStatistics>>> GetRequestsStatistics(AggregatedDataFilter filter)
+    public async Task<Result<List<GetRequestsStatistics>>> GetRequestsStatistics(GenericFilter filter)
     {
         var statistics = _statisticsService.GetStatistics();
 

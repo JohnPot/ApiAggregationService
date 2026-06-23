@@ -1,6 +1,13 @@
-﻿namespace ApiAggregationService.Features.ApiAggregation.ApiFilters;
+﻿using ApiAggregationService.CommonMethods;
 
-public class AggregatedDataFilter
+namespace ApiAggregationService.Features.ApiAggregation.ApiFilters;
+
+public class AggregatedDataFilter : GenericFilter
 {
-    public string? Sort { get; set; }
+    public AggregatedDataSortBy? SortBy { get; init; }
+}
+
+public class GenericFilter
+{
+    public SortDirection? Direction { get; init; }
 }

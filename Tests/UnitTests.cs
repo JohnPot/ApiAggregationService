@@ -1,3 +1,4 @@
+using ApiAggregationService.CommonMethods;
 using ApiAggregationService.ExternalApis;
 using ApiAggregationService.Features.ApiAggregation.ApiFilters;
 using ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
@@ -95,7 +96,8 @@ public class UnitTests
         var result = providers.ApplyFilter(
             new AggregatedDataFilter
             {
-                Sort = "value_desc"
+                SortBy = AggregatedDataSortBy.Value,
+                Direction = SortDirection.Desc
             });
 
 
@@ -123,7 +125,8 @@ public class UnitTests
         var result = providers.ApplyFilter(
             new AggregatedDataFilter
             {
-                Sort = "provider_desc"
+                SortBy = AggregatedDataSortBy.Provider,
+                Direction = SortDirection.Desc
             });
 
 

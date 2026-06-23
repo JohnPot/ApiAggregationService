@@ -1,4 +1,5 @@
-﻿using ApiAggregationService.Features.ApiAggregation.ApiFilters;
+﻿using ApiAggregationService.CommonMethods;
+using ApiAggregationService.Features.ApiAggregation.ApiFilters;
 
 namespace ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
 
@@ -8,12 +9,16 @@ public static class AggregatedDataFilterExtensions
     {
         var query = providers;
 
-        query = filter.Sort?.ToLower() switch
+        query = filter.SortBy switch
         {
-            "value_asc" => query.OrderBy(x => x.Value),
-            "value_desc" => query.OrderByDescending(x => x.Value),
-            "provider_asc" => query.OrderBy(x => x.Provider),
-            "provider_desc" => query.OrderByDescending(x => x.Provider),
+            AggregatedDataSortBy.Value => filter.Direction == SortDirection.Desc
+               ? query.OrderByDescending(x => x.Value)
+               : query.OrderBy(x => x.Value),
+
+            AggregatedDataSortBy.Provider => filter.Direction == SortDirection.Desc
+                        ? query.OrderByDescending(x => x.Provider)
+                        : query.OrderBy(x => x.Provider),
+
             _ => query
         };
 

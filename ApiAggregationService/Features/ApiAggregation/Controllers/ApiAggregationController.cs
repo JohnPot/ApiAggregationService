@@ -45,7 +45,7 @@ public class PricesController : ControllerBase
     /// </summary>
     [HttpGet("statistics")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetRequestsStatistics([FromQuery] AggregatedDataFilter filter)
+    public async Task<IActionResult> GetRequestsStatistics([FromQuery] GenericFilter filter)
     {
         var statisticsResult = await _aggregationService.GetRequestsStatistics(filter);
 
