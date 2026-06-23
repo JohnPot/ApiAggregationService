@@ -1,8 +1,11 @@
 ﻿using ApiAggregationService.ExternalApis;
 using ApiAggregationService.Features.ApiAggregation.Services;
+using ApiAggregationService.Infrastructure.Resilience;
 using ApiAggregationService.Services.Statistics;
 using ApiAggregationService.Services.ValueTransformation;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
+using Polly.Retry;
 
 namespace Tests;
 
@@ -11,11 +14,22 @@ public class ServiceFactory
     private readonly IMemoryCache _cache;
     private readonly IStatisticsService _statisticsService;
     private readonly IValueTransformation _valueTransformation;
+    private readonly RetryPolicyFactory _retryPolicyFactory;
+    private readonly ILogger<AggregationService> _logger;
     public ServiceFactory()
     {
         _cache = new MemoryCache(new MemoryCacheOptions());
         _statisticsService = new FakeStatisticsService();
         _valueTransformation = new FakeValueTransformation();
+
+        var loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole();
+        });
+
+        _logger = loggerFactory.CreateLogger<AggregationService>();
+
+        _retryPolicyFactory = new RetryPolicyFactory(loggerFactory.CreateLogger<RetryPolicyFactory>());
     }
 
     public AggregationService CreateAggregationService(
@@ -25,6 +39,8 @@ public class ServiceFactory
             providers,
             _valueTransformation,
             _cache,
-            _statisticsService);
+            _statisticsService,
+            _logger,
+            _retryPolicyFactory);
     }
 }
