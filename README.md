@@ -50,6 +50,136 @@ Example:
 
 ---
 
+## Endpoints
+
+### POST /api/auth/token
+
+Example response:
+
+```
+{
+  "token": "eyJhbGciOiJIUzI1Ni..."
+}
+```
+
+The token must be included in authenticated requests:
+
+Authorization: Bearer {token}
+
+---
+
+### Authentication Configuration
+
+Application settings are configured using appsettings.json.
+
+Example:
+
+```
+{
+  "Jwt": {
+    "Issuer": "ApiAggregationService",
+    "Audience": "ApiAggregationClient",
+    "Key": "long-enough-jwt-key-to-protect-my-endpoints"
+  }
+}
+```
+
+The JWT key should be a secure value with sufficient length.
+
+---
+
+### Aggregation Endpoint
+
+Fetches data from all registered external API providers,
+aggregates the results, and returns the response.
+
+GET /api/aggregation
+
+Authorization: Bearer {token}
+
+Optional sorting can be applied.
+
+SortBy
+
+Available values:
+1. Provider
+2. Value
+
+Example:
+
+GET /api/aggregation?SortBy=Value
+
+
+Direction can be set
+
+Available values:
+
+1. Asc
+2. Desc
+
+Example:
+
+GET /api/aggregation?SortBy=Provider&Direction=Desc
+
+
+Example Response:
+
+```
+{
+  "dataSource": "ExternalAPI",
+  "timeFetched": "2026-06-22T00:06:00Z",
+  "aggregatedValue": 14395.10,
+  "sourcesUsed": 5,
+  "providers": [
+    {
+      "provider": "Bitfinex",
+      "value": 65046.00
+    },
+    {
+      "provider": "Github",
+      "value": 5476.00
+    }
+  ]
+}
+```
+
+---
+
+### Statistics Endpoint
+
+Returns performance metrics for each external API provider.
+
+GET /api/aggregation/statistics
+
+Authorization: Bearer {token}
+
+Example response:
+
+```
+[
+  {
+    "apiName": "Bitfinex",
+    "totalRequests": 20,
+    "failedRequests": 2,
+    "fastRequests": 10,
+    "averageRequests": 7,
+    "slowRequests": 1,
+    "averageResponseTime": 135.5
+  }
+]
+```
+
+Sorting Direction:
+
+Available:
+
+1. Asc
+2. Desc
+
+GET /api/statistics?Direction=Desc
+
+---
+
 ## Caching
 
 The service uses `IMemoryCache`.
