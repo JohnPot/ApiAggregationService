@@ -95,7 +95,7 @@ Sort providers alphabetically by provider name.
 Example:
 
 ```http
-GET /api/aggregation?sort=provider_asc
+GET /api/aggregation?SortBy=Provider&Direction=Asc
 ```
 
 Result:
@@ -122,12 +122,12 @@ Sort providers based on the returned API value.
 Example:
 
 ```http
-GET /api/aggregation?sort=value_desc
+GET /api/aggregation?SortBy=value&Direction=Desc
 ```
 
----
+Same for request's statistics Endpoint.
 
-You can also sort the Request's statistics by providing asc or desc.
+---
 
 ## Background Monitoring
 
