@@ -39,7 +39,7 @@ Example:
 {
   "dataSource": "ExternalAPI",
   "timeFetched": "2026-06-22T00:06:00Z",
-  "aggregatedValue": 35261.00,
+  "averageValue": 35261.00,
   "sourcesUsed": 5,
   "providers": [
     {
@@ -134,7 +134,7 @@ Example Response:
 {
   "dataSource": "ExternalAPI",
   "timeFetched": "2026-06-22T00:06:00Z",
-  "aggregatedValue": 14395.10,
+  "averageValue": 14395.10,
   "sourcesUsed": 5,
   "providers": [
     {

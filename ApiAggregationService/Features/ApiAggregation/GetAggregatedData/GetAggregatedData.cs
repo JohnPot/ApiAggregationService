@@ -4,7 +4,7 @@ public record GetAggregatedDataResponse
 {
     public string DataSource { get; init; }
     public DateTime TimeFetched { get; init; }
-    public decimal AggregatedValue { get; init; }
+    public decimal AverageValue { get; init; }
     public int SourcesUsed { get; init; }
     public List<ProviderValue> Providers { get; set; } = new();
 }

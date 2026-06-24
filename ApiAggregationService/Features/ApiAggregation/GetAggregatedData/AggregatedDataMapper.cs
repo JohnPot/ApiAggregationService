@@ -8,7 +8,7 @@ public static class AggregatedDataMapper
     {
         return new GetAggregatedDataResponse
         {
-            AggregatedValue = cached.Value,
+            AverageValue = cached.Value,
             TimeFetched = cached.Timestamp,
             DataSource = Enum.GetName(sourceEnums),
             SourcesUsed = cached.SourcesUsed,
@@ -26,7 +26,7 @@ public static class AggregatedDataMapper
     {
         return new AggregatedCacheModel
         {
-            Value = response.AggregatedValue,
+            Value = response.AverageValue,
             Timestamp = response.TimeFetched,
             SourcesUsed = response.SourcesUsed,
             Providers = response.Providers

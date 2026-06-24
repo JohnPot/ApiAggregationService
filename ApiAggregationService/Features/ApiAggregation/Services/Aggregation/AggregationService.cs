@@ -113,7 +113,7 @@ public class AggregationService : IAggregationService
         GetAggregatedDataResponse AggregatedData = new()
         {
             TimeFetched = DateTime.UtcNow.Date.AddMinutes(DateTime.UtcNow.Minute),
-            AggregatedValue = _valueTransformation.Formula(values),
+            AverageValue = _valueTransformation.Formula(values),
             DataSource = Enum.GetName(SourceEnums.ExternalAPI),
             SourcesUsed = values.Count(),
             Providers = values.Select(x => new ProviderValue()
