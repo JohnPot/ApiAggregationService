@@ -176,7 +176,7 @@ Available:
 1. Asc
 2. Desc
 
-GET /api/statistics?Direction=Desc
+GET /api/aggregation/statistics?Direction=Desc
 
 ---
 
@@ -212,53 +212,6 @@ Statistics are stored in memory using a thread-safe collection.
 
 ---
 
-## Sorting
-
-The aggregated response supports optional sorting of provider results.
-
-The available sorting options are based on the data returned from external providers:
-
-### Sort by Provider
-
-Sort providers alphabetically by provider name.
-
-Example:
-
-```http
-GET /api/aggregation?SortBy=Provider&Direction=Asc
-```
-
-Result:
-
-```json
-[
-  {
-    "provider": "Bitfinex",
-    "value": 65046.00
-  },
-  {
-    "provider": "Github",
-    "value": 5476.00
-  }
-]
-```
-
----
-
-### Sort by Value
-
-Sort providers based on the returned API value.
-
-Example:
-
-```http
-GET /api/aggregation?SortBy=value&Direction=Desc
-```
-
-Same for request's statistics Endpoint.
-
----
-
 ## Background Monitoring
 
 A hosted background service periodically checks API performance statistics.
@@ -271,20 +224,6 @@ Example:
 External API performance anomaly detected.
 Average response time: 300ms
 ```
-
----
-
-## Authentication
-
-The API is secured using JWT Bearer authentication.
-
-Protected endpoints require:
-
-```
-Authorization: Bearer {token}
-```
-
-JWT validation is configured through `appsettings.json`.
 
 ---
 
@@ -320,7 +259,7 @@ dotnet run
 The API will start and Swagger will be available at:
 
 ```
-https://localhost:<port>/swagger
+http://localhost/swagger
 ```
 
 ---
