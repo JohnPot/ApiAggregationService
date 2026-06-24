@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is an API aggregation service that fetches data from multiple external API providers simultaneously, aggregates the results, and exposes them through a REST API.
+This project is an API aggregation service that fetches data from multiple external API providers simultaneously, aggregates the results using a formula, and exposes them through a REST API.
 
 The service includes:
 
@@ -26,8 +26,10 @@ The service calls multiple external providers concurrently.
 Each provider:
 
 1. Sends a request to its external API
-2. Returns a normalized model
-3. Records execution time and success/failure status
+2. Keeps a numeric value from the API 
+3. Returns a normalized model
+4. Records execution time and success/failure status
+5. Calculates the Average from all these values
 
 The results are then aggregated into a single response.
 
@@ -37,12 +39,16 @@ Example:
 {
   "dataSource": "ExternalAPI",
   "timeFetched": "2026-06-22T00:06:00Z",
-  "aggregatedValue": 14395.10,
+  "aggregatedValue": 35261.00,
   "sourcesUsed": 5,
   "providers": [
     {
       "provider": "Bitfinex",
       "value": 65046.00
+    },
+     {
+      "provider": "Github",
+      "value": 5476.00
     }
   ]
 }
