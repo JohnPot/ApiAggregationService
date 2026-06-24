@@ -3,16 +3,15 @@ using ApiAggregationService.ExternalApis;
 using ApiAggregationService.Features.ApiAggregation.ApiFilters;
 using ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
 using ApiAggregationService.Features.ApiAggregation.GetStatistics;
-using ApiAggregationService.Features.ApiAggregation.Interfaces;
+using ApiAggregationService.Features.ApiAggregation.Services.Statistics;
+using ApiAggregationService.Features.ApiAggregation.Services.ValueTransformation;
 using ApiAggregationService.Infrastructure.Cache;
 using ApiAggregationService.Infrastructure.Resilience;
-using ApiAggregationService.Services.Statistics;
-using ApiAggregationService.Services.ValueTransformation;
 using Microsoft.Extensions.Caching.Memory;
 using Polly;
 using System.Diagnostics;
 
-namespace ApiAggregationService.Features.ApiAggregation.Services;
+namespace ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
 
 public class AggregationService : IAggregationService
 {
@@ -24,7 +23,7 @@ public class AggregationService : IAggregationService
     private readonly RetryPolicyFactory _retryPolicyFactory;
 
     private const string CacheKey = "aggregated_data";
-    public AggregationService(IEnumerable<IApiProvider> providers, IValueTransformation ValueTransformation, IMemoryCache cache, 
+    public AggregationService(IEnumerable<IApiProvider> providers, IValueTransformation ValueTransformation, IMemoryCache cache,
                               IStatisticsService statisticsService, ILogger<AggregationService> logger, RetryPolicyFactory retryPolicyFactory)
     {
         _providers = providers;
@@ -61,7 +60,7 @@ public class AggregationService : IAggregationService
                     async () =>
                     {
                         _logger.LogInformation("Fetching data from API {Provider}", provider.Name);
-                        var data =  await provider.GetDataAsync(ct);
+                        var data = await provider.GetDataAsync(ct);
 
                         _logger.LogInformation("Successfully fetched data from API {Provider}", provider.Name);
                         return data;

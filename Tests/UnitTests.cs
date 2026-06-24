@@ -2,8 +2,8 @@ using ApiAggregationService.CommonMethods;
 using ApiAggregationService.ExternalApis;
 using ApiAggregationService.Features.ApiAggregation.ApiFilters;
 using ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
-using ApiAggregationService.Features.ApiAggregation.Services;
-using ApiAggregationService.Services.Statistics;
+using ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
+using ApiAggregationService.Features.ApiAggregation.Services.Statistics;
 
 namespace Tests;
 public class UnitTests

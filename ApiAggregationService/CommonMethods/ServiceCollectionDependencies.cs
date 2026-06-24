@@ -3,12 +3,11 @@ using ApiAggregationService.ExternalApis.Providers.Bitstamp;
 using ApiAggregationService.ExternalApis.Providers.Github;
 using ApiAggregationService.ExternalApis.Providers.OpenWeatherMapProvider;
 using ApiAggregationService.ExternalApis.Providers.PokeProvider;
-using ApiAggregationService.Services.Statistics;
-using ApiAggregationService.Features.ApiAggregation.Interfaces;
-using ApiAggregationService.Features.ApiAggregation.Services;
 using ApiAggregationService.BackgroundWorkers;
-using ApiAggregationService.Services.ValueTransformation;
 using ApiAggregationService.ExternalApis;
+using ApiAggregationService.Features.ApiAggregation.Services.Statistics;
+using ApiAggregationService.Features.ApiAggregation.Services.ValueTransformation;
+using ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
 
 namespace ApiAggregationService.CommonMethods;
 

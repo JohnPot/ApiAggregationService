@@ -1,6 +1,6 @@
-﻿namespace ApiAggregationService.Services.Statistics;
+﻿namespace ApiAggregationService.Features.ApiAggregation.Services.Statistics;
 
-public class ApiStatistics
+public class ApiStatisticsModel
 {
     public string ApiName { get; set; }
     public long TotalRequests { get; set; }

@@ -1,10 +1,10 @@
-﻿using ApiAggregationService.Services.Statistics;
+﻿using ApiAggregationService.Features.ApiAggregation.Services.Statistics;
 
 namespace ApiAggregationService.Features.ApiAggregation.GetStatistics;
 
 public static class RequestsStatisticsMapper
 {
-    public static List<GetRequestsStatistics> ToResponse(this IEnumerable<ApiStatistics> statistics)
+    public static List<GetRequestsStatistics> ToResponse(this IEnumerable<ApiStatisticsModel> statistics)
     {
         return statistics
             .Select(statistic => new GetRequestsStatistics

@@ -1,4 +1,4 @@
-﻿using ApiAggregationService.Services.Statistics;
+﻿using ApiAggregationService.Features.ApiAggregation.Services.Statistics;
 
 namespace ApiAggregationService.BackgroundWorkers;
 

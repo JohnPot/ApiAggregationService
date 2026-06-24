@@ -1,14 +1,14 @@
 ﻿using System.Collections.Concurrent;
 
-namespace ApiAggregationService.Services.Statistics;
+namespace ApiAggregationService.Features.ApiAggregation.Services.Statistics;
 
 public class StatisticsService : IStatisticsService
 {
-    private readonly ConcurrentDictionary<string, ApiStatistics> _stats = new();
+    private readonly ConcurrentDictionary<string, ApiStatisticsModel> _stats = new();
 
     public void Record(string apiName, long elapsedMilliseconds, bool isSuccess)
     {
-        var stats = _stats.GetOrAdd(apiName, _ => new ApiStatistics
+        var stats = _stats.GetOrAdd(apiName, _ => new ApiStatisticsModel
         {
             ApiName = apiName
         });
@@ -33,8 +33,8 @@ public class StatisticsService : IStatisticsService
         }
     }
 
-    public List<ApiStatistics> GetStatistics()
+    public IEnumerable<ApiStatisticsModel> GetStatistics()
     {
-        return _stats.Values.ToList();
+        return _stats.Values;
     }
 }

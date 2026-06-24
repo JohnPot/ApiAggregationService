@@ -1,6 +1,6 @@
 ﻿using ApiAggregationService.ExternalApis;
 
-namespace ApiAggregationService.Services.ValueTransformation;
+namespace ApiAggregationService.Features.ApiAggregation.Services.ValueTransformation;
 
 public class ValueTransformationService : IValueTransformation
 {

@@ -1,8 +1,8 @@
 ﻿using ApiAggregationService.ExternalApis;
-using ApiAggregationService.Features.ApiAggregation.Services;
+using ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
+using ApiAggregationService.Features.ApiAggregation.Services.Statistics;
+using ApiAggregationService.Features.ApiAggregation.Services.ValueTransformation;
 using ApiAggregationService.Infrastructure.Resilience;
-using ApiAggregationService.Services.Statistics;
-using ApiAggregationService.Services.ValueTransformation;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 

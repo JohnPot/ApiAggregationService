@@ -4,7 +4,7 @@ using ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
 using ApiAggregationService.Features.ApiAggregation.GetStatistics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiAggregationService.Features.ApiAggregation.Interfaces;
+namespace ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
 
 public interface IAggregationService
 {

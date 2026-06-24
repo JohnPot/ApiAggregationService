@@ -1,6 +1,6 @@
 ﻿using ApiAggregationService.CommonMethods;
 using ApiAggregationService.Features.ApiAggregation.ApiFilters;
-using ApiAggregationService.Features.ApiAggregation.Interfaces;
+using ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
