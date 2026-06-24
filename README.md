@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is an API aggregation service that fetches data from multiple external API providers simultaneously, aggregates the results using a formula, and exposes them through a REST API.
+This project is an API aggregation service that fetches data from multiple external API providers simultaneously, aggregates the results by taking the average, and exposes them through a REST API.
 
 The service includes:
 
