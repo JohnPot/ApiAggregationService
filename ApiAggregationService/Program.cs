@@ -4,6 +4,7 @@ using ApiAggregationService.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -23,6 +24,14 @@ if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddSwaggerGen(options =>
     {
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+
+        var xmlPath = Path.Combine(
+            AppContext.BaseDirectory,
+            xmlFile);
+
+        options.IncludeXmlComments(xmlPath);
+
         options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             Name = "Authorization",
