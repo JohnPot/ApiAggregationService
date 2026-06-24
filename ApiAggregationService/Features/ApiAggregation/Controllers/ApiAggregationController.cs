@@ -1,5 +1,7 @@
 ﻿using ApiAggregationService.CommonMethods;
 using ApiAggregationService.Features.ApiAggregation.ApiFilters;
+using ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
+using ApiAggregationService.Features.ApiAggregation.GetStatistics;
 using ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +23,7 @@ public class PricesController : ControllerBase
     /// Get aggregated values
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GetAggregatedDataResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAggregatedValues([FromQuery] AggregatedDataFilter filter, CancellationToken ct)
@@ -44,7 +46,7 @@ public class PricesController : ControllerBase
     /// Get request's statistics
     /// </summary>
     [HttpGet("statistics")]
-    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GetRequestsStatistics), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetRequestsStatistics([FromQuery] GenericFilter filter)
     {
         var statisticsResult = await _aggregationService.GetRequestsStatistics(filter);
