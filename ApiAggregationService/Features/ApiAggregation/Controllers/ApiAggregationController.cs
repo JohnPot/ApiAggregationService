@@ -47,6 +47,7 @@ public class PricesController : ControllerBase
     /// </summary>
     [HttpGet("statistics")]
     [ProducesResponseType(typeof(GetRequestsStatistics), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult GetRequestsStatistics([FromQuery] GenericFilter filter)
     {
         var statisticsResult = _aggregationService.GetRequestsStatistics(filter);
