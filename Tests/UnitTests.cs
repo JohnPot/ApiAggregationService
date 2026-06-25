@@ -22,7 +22,7 @@ public class UnitTests
 
         var result = await service.GetAggregatedData(new AggregatedDataFilter(), CancellationToken.None);
 
-        Assert.Equal(200, result.Value.AggregatedValue);
+        Assert.Equal(200, result.Value.AverageValue);
     }
 
     [Fact]
@@ -39,7 +39,7 @@ public class UnitTests
         var result = await service.GetAggregatedData(new AggregatedDataFilter(), CancellationToken.None);
 
 
-        Assert.Equal(150, result.Value.AggregatedValue);
+        Assert.Equal(150, result.Value.AverageValue);
         Assert.Equal(1, result.Value.SourcesUsed);
     }
 
@@ -61,7 +61,7 @@ public class UnitTests
             CancellationToken.None);
 
 
-        Assert.Equal(500, result.Value.AggregatedValue);
+        Assert.Equal(500, result.Value.AverageValue);
         Assert.Equal(1, provider.CallCount);
     }
 
