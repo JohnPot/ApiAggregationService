@@ -49,7 +49,7 @@ public class PricesController : ControllerBase
     [ProducesResponseType(typeof(GetRequestsStatistics), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetRequestsStatistics([FromQuery] GenericFilter filter)
     {
-        var statisticsResult = await _aggregationService.GetRequestsStatistics(filter);
+        var statisticsResult = _aggregationService.GetRequestsStatistics(filter);
 
         if (statisticsResult.IsFailure)
             return BadRequest(statisticsResult.Error);
