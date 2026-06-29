@@ -28,7 +28,7 @@ public class PricesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAggregatedValues([FromQuery] AggregatedDataFilter filter, CancellationToken ct)
     {
-        var aggregatedResult = await _aggregationService.GetAggregatedData(filter, ct);
+        var aggregatedResult = await _aggregationService.GetAggregatedDataAsync(filter, ct);
 
         if (aggregatedResult.IsFailure)
         {

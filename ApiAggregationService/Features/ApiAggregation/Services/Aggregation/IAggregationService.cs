@@ -8,6 +8,6 @@ namespace ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
 
 public interface IAggregationService
 {
-    Task<Result<GetAggregatedDataResponse>> GetAggregatedData(AggregatedDataFilter filter, CancellationToken ctct);
+    Task<Result<GetAggregatedDataResponse>> GetAggregatedDataAsync(AggregatedDataFilter filter, CancellationToken ctct);
     Result<List<GetRequestsStatistics>> GetRequestsStatistics(GenericFilter filter);
 }

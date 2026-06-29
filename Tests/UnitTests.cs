@@ -20,7 +20,7 @@ public class UnitTests
 
         var service = new ServiceFactory().CreateAggregationService(providers);
 
-        var result = await service.GetAggregatedData(new AggregatedDataFilter(), CancellationToken.None);
+        var result = await service.GetAggregatedDataAsync(new AggregatedDataFilter(), CancellationToken.None);
 
         Assert.Equal(200, result.Value.AverageValue);
     }
@@ -36,7 +36,7 @@ public class UnitTests
 
         AggregationService service = new ServiceFactory().CreateAggregationService(providers);
 
-        var result = await service.GetAggregatedData(new AggregatedDataFilter(), CancellationToken.None);
+        var result = await service.GetAggregatedDataAsync(new AggregatedDataFilter(), CancellationToken.None);
 
 
         Assert.Equal(150, result.Value.AverageValue);
@@ -51,12 +51,12 @@ public class UnitTests
         AggregationService service = new ServiceFactory().CreateAggregationService(new[] { provider });
 
 
-        await service.GetAggregatedData(
+        await service.GetAggregatedDataAsync(
             new AggregatedDataFilter(),
             CancellationToken.None);
 
 
-        var result = await service.GetAggregatedData(
+        var result = await service.GetAggregatedDataAsync(
             new AggregatedDataFilter(),
             CancellationToken.None);
 

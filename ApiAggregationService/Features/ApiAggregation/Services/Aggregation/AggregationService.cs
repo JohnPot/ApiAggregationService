@@ -8,7 +8,6 @@ using ApiAggregationService.Features.ApiAggregation.Services.ValueTransformation
 using ApiAggregationService.Infrastructure.Cache;
 using ApiAggregationService.Infrastructure.Resilience;
 using Microsoft.Extensions.Caching.Memory;
-using Polly;
 using System.Diagnostics;
 
 namespace ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
@@ -34,7 +33,7 @@ public class AggregationService : IAggregationService
         _retryPolicyFactory = retryPolicyFactory;
     }
 
-    public async Task<Result<GetAggregatedDataResponse>> GetAggregatedData(AggregatedDataFilter filter, CancellationToken ct)
+    public async Task<Result<GetAggregatedDataResponse>> GetAggregatedDataAsync(AggregatedDataFilter filter, CancellationToken ct)
     {
         //TRY TO FETCH FROM CACHE//
         var cached = _cache.Get<AggregatedCacheModel>(CacheKey);
