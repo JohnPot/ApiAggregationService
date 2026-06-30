@@ -1,5 +1,4 @@
-﻿using ApiAggregationService.CommonMethods;
-using ApiAggregationService.Features.ApiAggregation.ApiFilters;
+﻿using ApiAggregationService.Features.ApiAggregation.ApiFilters;
 using ApiAggregationService.Features.ApiAggregation.GetAggregatedData;
 using ApiAggregationService.Features.ApiAggregation.GetStatistics;
 using ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
@@ -32,11 +31,10 @@ public class PricesController : ControllerBase
 
         if (aggregatedResult.IsFailure)
         {
-            return aggregatedResult.ReturnStates switch
-            {
-                ReturnStates.NotFound => NotFound(aggregatedResult.Error),
-                _ => BadRequest(aggregatedResult.Error),
-            };
+            if (aggregatedResult.Value is null)
+                return NotFound(aggregatedResult.Error);
+
+            return BadRequest(aggregatedResult.Error);
         }
 
         return Ok(aggregatedResult.Value);

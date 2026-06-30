@@ -105,7 +105,7 @@ public class AggregationService : IAggregationService
 
             _logger.LogError("All providers are unavailable and no cache exists");
 
-            return Result<GetAggregatedDataResponse>.Failure("No external APIs available", ReturnStates.NotFound);
+            return Result<GetAggregatedDataResponse>.Failure("No external APIs available");
         }
 
         //CREATE MODEL TO STORE IN CACHE AND RETURN//

@@ -4,43 +4,33 @@ public class Result<T> : Result
 {
     public T Value { get; }
 
-    private Result(bool isSuccess, T value, string error, ReturnStates returnStates) : base(isSuccess, error, returnStates)
+    private Result(bool isSuccess, T value, string error) : base(isSuccess, error)
     {
         Value = value;
     }
 
     public static Result<T> Success(T value)
-        => new Result<T>(true, value, string.Empty, ReturnStates.Ok);
+        => new Result<T>(true, value, string.Empty);
 
-    public static Result<T> Failure(string error, ReturnStates returnState)
-        => new Result<T>(false, default!, error, returnState);
+    public static Result<T> Failure(string error)
+        => new Result<T>(false, default!, error);
 }
 
 public class Result
 {
     public bool IsSuccess { get; }
     public string Error { get; }
-    public ReturnStates ReturnStates { get; }
     public bool IsFailure => !IsSuccess;
 
-    protected Result(bool isSuccess, string error, ReturnStates returnStates)
+    protected Result(bool isSuccess, string error)
     {
         IsSuccess = isSuccess;
         Error = error;
-        ReturnStates = returnStates;
     }
 
     public static Result Success()
-        => new Result(true, string.Empty, ReturnStates.Ok);
+        => new Result(true, string.Empty);
 
-    public static Result Failure(string error, ReturnStates returnState)
-        => new Result(false, error, returnState);
-}
-
-public enum ReturnStates
-{
-    Ok,
-    NotFound,
-    Conflict,
-    BadRequest
+    public static Result Failure(string error)
+        => new Result(false, error);
 }
