@@ -9,5 +9,5 @@ namespace ApiAggregationService.Features.ApiAggregation.Services.Aggregation;
 public interface IAggregationService
 {
     Task<Result<GetAggregatedDataResponse>> GetAggregatedDataAsync(AggregatedDataFilter filter, CancellationToken ctct);
-    Result<List<GetRequestsStatistics>> GetRequestsStatistics(GenericFilter filter);
+    Result<IReadOnlyList<GetRequestsStatistics>> GetRequestsStatistics(GenericFilter filter);
 }

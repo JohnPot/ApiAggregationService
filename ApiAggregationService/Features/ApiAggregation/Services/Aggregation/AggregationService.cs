@@ -132,7 +132,7 @@ public class AggregationService : IAggregationService
         return Result<GetAggregatedDataResponse>.Success(AggregatedData);
     }
 
-    public Result<List<GetRequestsStatistics>> GetRequestsStatistics(GenericFilter filter)
+    public Result<IReadOnlyList<GetRequestsStatistics>> GetRequestsStatistics(GenericFilter filter)
     {
         var statistics = _statisticsService.GetStatistics();
 
@@ -140,6 +140,6 @@ public class AggregationService : IAggregationService
         var response = statistics.ToResponse();
         response = response.ApplyFilter(filter);
 
-        return Result<List<GetRequestsStatistics>>.Success(response);
+        return Result<IReadOnlyList<GetRequestsStatistics>>.Success(response);
     }
 }
